@@ -37,10 +37,10 @@ public class GenericService<T> extends Conexao implements CrudDao<T> {
 	}
 
 	@Override
-	public List<T> listar(Class<T> classe) {
+	public List<T> listar(String query, Class<T> classe) {
 		conectar();
 		try {
-			return em.createQuery("Select c from classe").setParameter("classe", classe).getResultList();
+			return em.createNamedQuery(query, classe).getResultList();
 
 		} catch (Exception e) {
 			e.printStackTrace();

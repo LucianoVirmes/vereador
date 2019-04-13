@@ -8,34 +8,28 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.edu.unoesc.dao.PartidoService;
-import br.edu.unoesc.dao.VereadorService;
 import br.edu.unoesc.model.Partido;
-import br.edu.unoesc.model.Vereador;
 
 @Controller
-@Path("/vereador")
-public class VereadorController {
+@Path("/partido")
+public class PartidoController {
 	@Inject
 	private Result result;
 	@Inject
-	private VereadorService service;
-	@Inject
-	private PartidoService Partidoservice;
+	private PartidoService service;
 
 	@Get("/lista")
 	public void lista() {
-		result.include("lista", service.listar(Vereador.listarTodos, Vereador.class));
+		result.include("lista", service.listar(Partido.listarTodos, Partido.class));
 	}
 
 	@Get("/novo")
 	public void novo() {
-		result.include("partidos", Partidoservice.listar(Partido.listarTodos, Partido.class));
-	}
 
+	}
 	@Post("/novo")
-	public void novo(Vereador vereador) {
-		service.inserir(vereador);
+	public void novo(Partido partido) {
+		service.inserir(partido);
 		result.redirectTo(this).lista();
 	}
-
 }
