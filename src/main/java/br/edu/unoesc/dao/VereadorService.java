@@ -1,4 +1,4 @@
-package br.unoesc.edu.dao;
+package br.edu.unoesc.dao;
 
 import br.edu.unoesc.model.Vereador;
 
