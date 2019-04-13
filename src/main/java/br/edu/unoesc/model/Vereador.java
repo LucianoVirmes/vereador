@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = Vereador.listarTodos, query = "select t from Vereador t") })
@@ -17,20 +19,10 @@ public class Vereador extends Pessoa implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 2373617700743489812L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long codigo;
+
 	private LocalDate dataAssociacao;
 
 	public static final String listarTodos = "buscarTodosVereadores";
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
 
 	public LocalDate getDataAssociacao() {
 		return dataAssociacao;
@@ -40,9 +32,8 @@ public class Vereador extends Pessoa implements Serializable {
 		this.dataAssociacao = dataAssociacao;
 	}
 
-	public Vereador(Long codigo, String nome, Long codigo2, LocalDate dataAssociacao) {
+	public Vereador(Long codigo, String nome, LocalDate dataAssociacao) {
 		super(codigo, nome);
-		codigo = codigo2;
 		this.dataAssociacao = dataAssociacao;
 	}
 
