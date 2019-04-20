@@ -16,13 +16,12 @@
 				
 				
 				<label>Partido</label>
-				<select>
+				<select name="vereador.partido.id">
 					<c:forEach var="partido" items="${partidos }">
-						<option>${partido.nome}</option>
+						<option value="${partido.id}">${partido.nome}</option>
+						
 					</c:forEach>
 				</select>
-				<input type="hidden" value="${partido.codigo}">
-				
 				<button type="submit">Salvar</button>
 			</form>
 		</fieldset>

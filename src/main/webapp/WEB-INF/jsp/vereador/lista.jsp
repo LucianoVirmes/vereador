@@ -13,13 +13,19 @@
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<th>Desempenho</th>
+					<th>Projetos Aprovados</th>
+					<th>Projetos Apresentados</th>
+					<th>Opções</th>
 				</tr>
 			</thead>	
 			<tbody>
 				<c:forEach var="pessoa" items="${lista}" >
 					<tr>
 						<td>${pessoa.nome }</td>
+						<td>x</td>
+						<td>y</td>
+						<td><a href="visualizar/${pessoa.codigo}">Editar</a></td>
+						
 					</tr>		
 				</c:forEach>
 			</tbody>			

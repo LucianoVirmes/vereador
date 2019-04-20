@@ -1,13 +1,17 @@
 package br.edu.unoesc.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = Partido.listarTodos, query = "Select p from Partido p") })
@@ -22,6 +26,8 @@ public class Partido implements Serializable {
 	private Long numero;
 	private String nome;
 
+	@OneToMany(mappedBy = "partido", targetEntity = Vereador.class, cascade = CascadeType.ALL)
+	private Set<Vereador> vereadores = new HashSet<Vereador>();
 	public static final String listarTodos = "buscarTodosPartidos";
 
 	public Partido() {

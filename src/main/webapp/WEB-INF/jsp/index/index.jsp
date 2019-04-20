@@ -9,7 +9,6 @@
 	<body>
 		<a href="vereador/lista">Lista de vereadores</a>
 		<a href="vereador/novo">Cadastrar vereador</a><br>
-		
 		<a href="partido/lista">Lista de partidos</a>
 		<a href="partido/novo">Cadastrar partido</a>
 	</body>

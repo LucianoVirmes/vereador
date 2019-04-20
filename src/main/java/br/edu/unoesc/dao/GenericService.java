@@ -50,4 +50,32 @@ public class GenericService<T> extends Conexao implements CrudDao<T> {
 		}
 	}
 
+	@Override
+	public T buscar(Class<T> classe, Long codigo) {
+		conectar();
+		try {
+			return em.find(classe, codigo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			desconectar();
+		}
+	}
+
+	@Override
+	public void alterar(T dado) {
+		conectar();
+		try {
+			et.begin();
+			em.merge(dado);
+			et.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			et.rollback();
+		} finally {
+			desconectar();
+		}
+	}
+
 }

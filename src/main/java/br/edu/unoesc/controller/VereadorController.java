@@ -1,5 +1,7 @@
 package br.edu.unoesc.controller;
 
+import java.time.LocalDate;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
@@ -8,8 +10,10 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.edu.unoesc.dao.PartidoService;
+import br.edu.unoesc.dao.ProjetoService;
 import br.edu.unoesc.dao.VereadorService;
 import br.edu.unoesc.model.Partido;
+import br.edu.unoesc.model.Projeto;
 import br.edu.unoesc.model.Vereador;
 
 @Controller
@@ -20,7 +24,9 @@ public class VereadorController {
 	@Inject
 	private VereadorService service;
 	@Inject
-	private PartidoService Partidoservice;
+	private PartidoService partidoService;
+	@Inject
+	private ProjetoService projetoService;
 
 	@Get("/lista")
 	public void lista() {
@@ -29,13 +35,35 @@ public class VereadorController {
 
 	@Get("/novo")
 	public void novo() {
-		result.include("partidos", Partidoservice.listar(Partido.listarTodos, Partido.class));
+		result.include("partidos", partidoService.listar(Partido.listarTodos, Partido.class));
 	}
 
 	@Post("/novo")
 	public void novo(Vereador vereador) {
+		vereador.setDataAssociacao(LocalDate.now());
 		service.inserir(vereador);
 		result.redirectTo(this).lista();
+	}
+
+	@Get("/visualizar/cadastroProjeto/{vereador.codigo}")
+	public void cadastroProjeto(Vereador vereador) {
+
+	}
+
+	@Post("/visualizar/cadastroProjeto/{vereador.codigo}")
+	public void cadastrar(Vereador vereador, Projeto projeto) {
+		projeto.setVereador(vereador);
+		vereador.getProjetos().add(projeto);
+		service.adicionaProjetos(vereador);
+		System.out.println(vereador.getProjetos());
+		result.redirectTo(VereadorController.class).lista();
+	}
+
+	@Get("/visualizar/{vereador.codigo}")
+	public void visualizar(Vereador vereador) {
+		result.include("projetos", (projetoService.buscaProjetoPorVereador(vereador.getCodigo())));
+		result.include("partidos", partidoService.listar(Partido.listarTodos, Partido.class));
+		result.include(service.buscar(Vereador.class, vereador.getCodigo()));
 	}
 
 }
