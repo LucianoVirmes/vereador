@@ -21,4 +21,12 @@ public class ProjetoService extends GenericService<Projeto> {
 			desconectar();
 		}
 	}
+
+	public void alterarProjetos(Projeto projeto) {
+		Projeto proj = buscar(Projeto.class, projeto.getCodigo());
+		proj.setApresentado(projeto.getApresentado());
+		proj.setAprovado(projeto.getAprovado());
+		proj.setNome(projeto.getNome());
+		alterar(proj);
+	}
 }

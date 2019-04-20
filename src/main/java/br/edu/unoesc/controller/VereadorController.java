@@ -1,6 +1,7 @@
 package br.edu.unoesc.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -64,6 +65,13 @@ public class VereadorController {
 		result.include("projetos", (projetoService.buscaProjetoPorVereador(vereador.getCodigo())));
 		result.include("partidos", partidoService.listar(Partido.listarTodos, Partido.class));
 		result.include(service.buscar(Vereador.class, vereador.getCodigo()));
+	}
+	@Post("/visualizar/atualizaprojeto")
+	public void atualizaProjetos(List<Projeto> projetos ) {
+		for (Projeto projeto : projetos) {
+			projetoService.alterarProjetos(projeto);
+		}
+		result.redirectTo(this).lista();
 	}
 
 }
