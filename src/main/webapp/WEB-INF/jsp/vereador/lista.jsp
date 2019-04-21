@@ -19,12 +19,12 @@
 				</tr>
 			</thead>	
 			<tbody>
-				<c:forEach var="pessoa" items="${lista}" >
+				<c:forEach var="vereador" items="${lista}" >
 					<tr>
-						<td>${pessoa.nome }</td>
-						<td>x</td>
-						<td>y</td>
-						<td><a href="visualizar/${pessoa.codigo}">Editar</a></td>
+						<td>${vereador.nome}</td>
+						<td>${vereador.qntAprovada()}</td>
+						<td>${vereador.qtdApresentada()}</td>
+						<td><a href="visualizar/${vereador.codigo}">Editar</a></td>
 						
 					</tr>		
 				</c:forEach>
