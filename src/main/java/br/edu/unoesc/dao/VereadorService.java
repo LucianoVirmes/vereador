@@ -3,7 +3,6 @@ package br.edu.unoesc.dao;
 
 import javax.persistence.Query;
 
-import br.edu.unoesc.model.Projeto;
 import br.edu.unoesc.model.Vereador;
 
 public class VereadorService extends GenericService<Vereador> {

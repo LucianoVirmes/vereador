@@ -41,7 +41,6 @@ public class VereadorController {
 
 	@Post("/novo")
 	public void novo(Vereador vereador) {
-		vereador.setDataAssociacao(LocalDate.now());
 		service.inserir(vereador);
 		result.redirectTo(this).lista();
 	}
@@ -52,11 +51,10 @@ public class VereadorController {
 	}
 
 	@Post("/visualizar/cadastroProjeto/{vereador.codigo}")
-	public void cadastrar(Vereador vereador, Projeto projeto) {
+	public void cadastrarProjeto(Vereador vereador, Projeto projeto) {
 		projeto.setVereador(vereador);
 		vereador.getProjetos().add(projeto);
 		service.adicionaProjetos(vereador);
-		System.out.println(vereador.getProjetos());
 		result.redirectTo(VereadorController.class).lista();
 	}
 

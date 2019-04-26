@@ -13,6 +13,7 @@
 		<fieldset>
 			<form method="post">
 				<label>Nome</label><input type="text" name="vereador.nome"/>
+				<label>Data</label><input type="date" name="vereador.dataAssociacao"/>
 				
 				
 				<label>Partido</label>

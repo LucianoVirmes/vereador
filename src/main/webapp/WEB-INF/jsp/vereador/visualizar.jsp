@@ -10,21 +10,10 @@
 </head>
 <body>
 		<fieldset>
-			<form method="post">
 				<c:set var ="vereador" value="${vereador}"/> 
-				<label>Nome</label><input type="text" name="vereador.nome" value="${vereador.nome}"/>
-				
-				
-				<label>Partido</label>
-				<select>
-					<c:forEach var="partido" items="${partidos }">
-						<option value="${partido.nome}"></option>
-					</c:forEach>
-				</select>
+				<p>Nome: ${vereador.nome} <br>
 				<input type="hidden" value="${partido.codigo}">
 				
-				<button type="submit">Salvar</button>
-			</form>
 		</fieldset>
 		<a href="cadastroProjeto/${vereador.codigo}">Cadastrar projeto</a>
 		<form method="post" action="atualizaprojeto">

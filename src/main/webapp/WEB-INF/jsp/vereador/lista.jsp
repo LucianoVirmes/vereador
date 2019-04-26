@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 	<body>
+		<div style="text-align: center;">
 		<table>
 			<thead>
 				<tr>
@@ -25,10 +26,10 @@
 						<td>${vereador.qntAprovada()}</td>
 						<td>${vereador.qtdApresentada()}</td>
 						<td><a href="visualizar/${vereador.codigo}">Editar</a></td>
-						
 					</tr>		
 				</c:forEach>
 			</tbody>			
 		</table>
+		</div>
 	</body>
 </html>

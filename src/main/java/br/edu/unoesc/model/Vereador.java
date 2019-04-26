@@ -1,7 +1,7 @@
 package br.edu.unoesc.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,9 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
-
-import br.edu.unoesc.dao.ProjetoService;
 import br.edu.unoesc.dao.VereadorService;
 
 @Entity
@@ -25,7 +22,7 @@ public class Vereador extends Pessoa implements Serializable {
 	 */
 	private static final long serialVersionUID = 2373617700743489812L;
 
-	private LocalDate dataAssociacao;
+	private Date dataAssociacao;
 
 	@OneToMany(targetEntity = Projeto.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Projeto> projetos = new HashSet<Projeto>();
@@ -35,6 +32,10 @@ public class Vereador extends Pessoa implements Serializable {
 
 	public static final String listarTodos = "buscarTodosVereadores";
 
+	
+	public  Vereador() {
+		
+	}
 	public Long qntAprovada() {
 		VereadorService service = new VereadorService();
 		return service.qntProjetosAprovados(this.getCodigo());
@@ -46,20 +47,17 @@ public class Vereador extends Pessoa implements Serializable {
 		return service.qntProjetosApresentados(this.getCodigo());
 	}
 
-	public LocalDate getDataAssociacao() {
+	public Date getDataAssociacao() {
 		return dataAssociacao;
 	}
 
-	public void setDataAssociacao(LocalDate dataAssociacao) {
+	public void setDataAssociacao(Date dataAssociacao) {
 		this.dataAssociacao = dataAssociacao;
 	}
 
-	public Vereador(Long codigo, String nome, LocalDate dataAssociacao) {
+	public Vereador(Long codigo, String nome, Date dataAssociacao) {
 		super(codigo, nome);
 		this.dataAssociacao = dataAssociacao;
-	}
-
-	public Vereador() {
 	}
 
 	public Set<Projeto> getProjetos() {
